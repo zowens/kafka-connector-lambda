@@ -1,5 +1,7 @@
 # Kafka Connector - AWS Lambda
 
+[Kafka Connect](https://docs.confluent.io/current/connect/index.html) framework plugin for invoking AWS Lambda with a batch of records from Kafka.
+
 ## Quickstart
 
 ### Prerequisites 
@@ -37,4 +39,18 @@ aws lambda create-function --function-name test-func --runtime nodejs6.10 --zip-
 
 ```bash
 ./example/run.sh produce
+```
+
+In the logs of the Lambda, you should see the payload logged with the messages produced from Kafka:
+
+```javascript
+{
+    "Records": [
+        {
+            "Key": "foo",
+            "Value": "baz",
+            "Offset": 0
+        }
+    ]
+}
 ```
